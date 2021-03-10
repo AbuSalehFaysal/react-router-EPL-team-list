@@ -12,26 +12,24 @@ const TeamDetail = () => {
             .then(data => setTeam(data.teams[0]));
     }, [])
     const containerStyle = {
-        backgroundImage: `url('cover.png')`
-
-  /* Full height */
-//   height: 100%;
-
-//   /* Center and scale the image nicely */
-//   background-position: center;
-//   background-repeat: no-repeat;
-//   background-size: cover;
+        background: '#00003d',
+        color: 'white'
     }
 
-    // let gender = team.strGender;
-    // let imgURL;
-    // if (gender == 'Male') {
-    //     imgURL = "Male.png";
-    // } else {
-    //     imgURL = "Femal.png";
-    // }
+    const secondRowStyle = {
+        background: 'royalblue',
+        borderRadius: '20px'
+    }
+
+    let gender = team.strGender;
+    let imgURL;
+    if (gender == 'Male') {
+        imgURL = "male.png";
+    } else {
+        imgURL = "female.png";
+    }
     return (
-        <Container style={{backgroundImage: `url('cover.png')`}}>
+        <Container style={containerStyle}>
             <Row>
                 <Col xs={12} md={4}>
                     
@@ -43,7 +41,7 @@ const TeamDetail = () => {
                     
                 </Col>
             </Row>
-            <Row>
+            <Row style={secondRowStyle}>
                 <Col xs={12} md={4}>
                     <h4>Name: {team.strTeam}</h4>
                     <h4>Stadium: {team.strStadium}</h4>
@@ -56,7 +54,12 @@ const TeamDetail = () => {
                     
                 </Col>
                 <Col xs={12} md={4}>
-                    
+                    <Image src="cover6.jpg" fluid />
+                </Col>
+            </Row>
+            <Row>
+                <Col xs={12} md={12}>
+                    <p>{team.strDescriptionEN}</p>
                 </Col>
             </Row>
         </Container>
