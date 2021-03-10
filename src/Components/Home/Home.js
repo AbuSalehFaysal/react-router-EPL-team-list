@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Teams from '../Teams/Teams';
+import Image from 'react-bootstrap/Image'
+import { Col, Container, Row } from 'react-bootstrap';
+import './Home.css'
 
 const Home = () => {
     const [teams, setTeams] = useState([]);
@@ -8,11 +11,11 @@ const Home = () => {
             .then(res => res.json())
             .then(data => setTeams(data.teams))
     }, []);
+    
     return (
         <div>
-            <h1>This is Home Component</h1>
-            <h2>Lenght: {teams.length}</h2>
-            {/* <Teams></Teams> */}
+            <Image className="background-image" src="cover6.jpg" fluid />
+            <h6 style={{textAlign: "center"}}>Number of Premier League Teams: {teams.length}</h6>
             {
                 teams.map(team => <Teams team={team}></Teams>)
             }

@@ -9,6 +9,7 @@ import {
 } from "react-router-dom";
 import TeamDetail from './Components/TeamDetail/TeamDetail';
 import NoMatch from './Components/NoMatch/NoMatch';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
