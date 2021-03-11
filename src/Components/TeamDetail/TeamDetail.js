@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Col, Container, Image, Row } from 'react-bootstrap';
+import { Button, Col, Container, Image, Row } from 'react-bootstrap';
 import { useParams } from 'react-router';
+import ReactDOM from 'react-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faRunning} from '@fortawesome/free-solid-svg-icons';
+import { faFacebook, faTwitterSquare, faYoutube } from "@fortawesome/free-brands-svg-icons"
 
 const TeamDetail = () => {
     const { teamId } = useParams();
@@ -43,12 +47,12 @@ const TeamDetail = () => {
             </Row>
             <Row style={secondRowStyle}>
                 <Col xs={12} md={4}>
-                    <h4>Name: {team.strTeam}</h4>
-                    <h4>Stadium: {team.strStadium}</h4>
-                    <h4>Stadium: {team.intFormedYear}</h4>
-                    <h4>Stadium: {team.strCountry}</h4>
-                    <h4>Stadium: {team.strSport}</h4>
-                    <h4>Stadium: {team.strGender}</h4>
+                    {/* <h4>Name: {team.strTeam}</h4> */}
+                    {/* <h4>Stadium: {team.strStadium}</h4> */}
+                    <h4>Founded: {team.intFormedYear}</h4>
+                    <h4>Country: {team.strCountry}</h4>
+                    <h4>Sport Type: {team.strSport}</h4>
+                    <h4>Gender: {team.strGender}</h4>
                 </Col>
                 <Col xs={12} md={4}>
                     
@@ -60,6 +64,13 @@ const TeamDetail = () => {
             <Row>
                 <Col xs={12} md={12}>
                     <p>{team.strDescriptionEN}</p>
+                </Col>
+            </Row>
+            <Row style={{textAlign: "center", margin: "10px"}}>
+                <Col xs={12} md={12}>    
+                    <a style={{margin: "10px"}} href="#"><FontAwesomeIcon icon={faFacebook} /></a>
+                    <a style={{margin: "10px"}} href="#"><FontAwesomeIcon icon={faTwitterSquare} /></a>
+                    <a style={{margin: "10px"}} href="#"><FontAwesomeIcon icon={faYoutube} /></a>
                 </Col>
             </Row>
         </Container>
