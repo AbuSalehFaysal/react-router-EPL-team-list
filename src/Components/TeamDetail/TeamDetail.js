@@ -4,9 +4,10 @@ import { useParams } from 'react-router';
 import ReactDOM from 'react-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRunning} from '@fortawesome/free-solid-svg-icons';
-import { faFacebook, faTwitterSquare, faYoutube } from "@fortawesome/free-brands-svg-icons"
+import { faFacebook, faTwitterSquare, faYoutube } from "@fortawesome/free-brands-svg-icons";
 
-const TeamDetail = () => {
+
+const TeamDetail = (props) => {
     const { teamId } = useParams();
     const [team, setTeam] = useState([]);
     useEffect(() => {
@@ -14,7 +15,13 @@ const TeamDetail = () => {
         fetch(url)
             .then(res => res.json())
             .then(data => setTeam(data.teams[0]));
-    }, [teamId])
+    }, [teamId]);
+
+    const { strTeamBadge, intFormedYear, strCountry, strSport, strGender, strFacebook, strTwitter, strYoutube } = team;
+
+    let facebook = `https://${strFacebook}`;
+    let twitter = `https://${strTwitter}`;
+    let youtube = `https://${strYoutube}`;
     const containerStyle = {
         background: '#00003d',
         color: 'white'
@@ -25,7 +32,7 @@ const TeamDetail = () => {
         borderRadius: '20px'
     }
 
-    let gender = team.strGender;
+    let gender = strGender;
     let imgURL;
     if (gender == 'Male') {
         imgURL = "male.png";
@@ -33,13 +40,14 @@ const TeamDetail = () => {
         imgURL = "female.png";
     }
     return (
+        
         <Container style={containerStyle}>
             <Row>
                 <Col xs={12} md={4}>
                     
                 </Col>
                 <Col xs={12} md={4}>
-                    <Image src={team.strTeamBadge} fluid />
+                    <Image src={strTeamBadge} fluid />
                 </Col>
                 <Col xs={12} md={4}>
                     
@@ -47,18 +55,16 @@ const TeamDetail = () => {
             </Row>
             <Row style={secondRowStyle}>
                 <Col xs={12} md={4}>
-                    {/* <h4>Name: {team.strTeam}</h4> */}
-                    {/* <h4>Stadium: {team.strStadium}</h4> */}
-                    <h4>Founded: {team.intFormedYear}</h4>
-                    <h4>Country: {team.strCountry}</h4>
-                    <h4>Sport Type: {team.strSport}</h4>
-                    <h4>Gender: {team.strGender}</h4>
+                    <h4>Founded: {intFormedYear}</h4>
+                    <h4>Country: {strCountry}</h4>
+                    <h4>Sport Type: {strSport}</h4>
+                    <h4>Gender: {strGender}</h4>
                 </Col>
                 <Col xs={12} md={4}>
                     
                 </Col>
                 <Col xs={12} md={4}>
-                    <Image src="cover6.jpg" fluid />
+                    <Image src={imgURL} fluid />
                 </Col>
             </Row>
             <Row>
@@ -68,9 +74,9 @@ const TeamDetail = () => {
             </Row>
             <Row style={{textAlign: "center", margin: "10px"}}>
                 <Col xs={12} md={12}>    
-                    <a style={{margin: "10px"}} href="#"><FontAwesomeIcon icon={faFacebook} /></a>
-                    <a style={{margin: "10px"}} href="#"><FontAwesomeIcon icon={faTwitterSquare} /></a>
-                    <a style={{margin: "10px"}} href="#"><FontAwesomeIcon icon={faYoutube} /></a>
+                    <a style={{margin: "10px"}} href={facebook}><FontAwesomeIcon icon={faFacebook} /></a>
+                    <a style={{margin: "10px"}} href={twitter}><FontAwesomeIcon icon={faTwitterSquare} /></a>
+                    <a style={{margin: "10px"}} href={youtube}><FontAwesomeIcon icon={faYoutube} /></a>
                 </Col>
             </Row>
         </Container>
