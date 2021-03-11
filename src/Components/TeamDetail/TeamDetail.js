@@ -14,7 +14,7 @@ const TeamDetail = () => {
         fetch(url)
             .then(res => res.json())
             .then(data => setTeam(data.teams[0]));
-    }, [])
+    }, [teamId])
     const containerStyle = {
         background: '#00003d',
         color: 'white'
